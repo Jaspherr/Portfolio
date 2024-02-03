@@ -10,15 +10,19 @@
   <title>Jaspher Tania | Portfolio</title>
 </head>
 <body>
-    
+
     <header class="header">
         <nav>
-            <ul class="nav-links">
-                <li><a href="#me">HOME</a></li>
-                <li><a href="#projects">PROJECTS</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-            </ul>
+            <input type="checkbox" id="menuToggle">
+            <label for="menuToggle" class="menu-icon">&#9776;</label>
+            <div class="nav-box">
+                <ul class="nav-links">
+                    <li><a href="#me">HOME</a></li>
+                    <li><a href="#projects">PROJECTS</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -29,13 +33,14 @@
                     <h3>Hi, I'm&nbsp;</h3>
                     <h3 class="name">Jaspher<span></span></h3>
                 </div>
+                <button id="me">About Me</button>
                 <p>Simple yet Efficient.</p>
             </div>
         </div>
     </section>
 
     <section id="projects">
-        <div class="projects container">
+        <div class="project container">
             <div class="projects-header">
                 <h1 class="project-section">Projects</h1>
             </div>
@@ -49,7 +54,7 @@
                         <p>Developed and designed a state-of-the-art Body Mass Index (BMI) calculator, employing advanced algorithms to provide users with accurate and insightful information about their body composition. The user-friendly interface ensures a seamless experience, making health assessment and goal tracking accessible to individuals seeking to manage their fitness journey effectively.</p>
                     </div>
                 </div>
-                <div class="project-item ngg-item">
+                <div class="project-item ngg-items">
                     <div class="project-img">
                         <img src="./img/ngg.png" alt="img">
                     </div>
@@ -63,25 +68,29 @@
                         <img src="./img/ag.png" alt="img">
                     </div>
                     <div class="project-info">
-                        <h1>Revitalized an Art Gallery through a comprehensive redesign, enhancing its aesthetic appeal</h1>
+                        <h1>Revitalized Art Gallery with enhanced redesign</h1>
                         <p>Spearheaded a comprehensive redesign initiative for an Art Gallery, breathing new life into its visual identity and ambiance. Through thoughtful curation, spatial planning, and aesthetic enhancements, the gallery underwent a revitalization that not only showcased artworks in a more captivating manner but also attracted a broader audience by fostering a unique and immersive art-viewing experience.</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="project-row">
                 <div class="project-item">
                     <div class="project-img">
                         <img src="./img/pgf.png" alt="img">
                     </div>
                     <div class="project-info">
-                        <h1>Engineered a cutting-edge Mobile Game with a focus on innovative gameplay and a seamlessly intuitive user interface</h1>
+                        <h1>Crafted an innovative Mobile Game with intuitive design</h1>
                         <p>Engineered a cutting-edge Mobile Game that not only pushes the boundaries of innovation but also prioritizes an intuitive user interface for a seamless gaming experience. With a focus on gameplay mechanics, the game captivates users with its immersive features, setting a new standard for mobile gaming and providing entertainment that goes beyond traditional norms.</p>
+
                     </div>
                 </div>
-                <div class="project-item kithara-item centered-item">
+                <div class="project-item">
                     <div class="project-img">
                         <img src="./img/kithara.png" alt="img">
                     </div>
                     <div class="project-info">
-                        <h1>In the process of crafting an advanced Guitar Online Tutoring Web Application</h1>
+                        <h1>Designing a refined Guitar Online Tutoring Web App</h1>
                         <p>Currently in the process of crafting an advanced Guitar Online Tutoring Web Application that aims to revolutionize the way individuals learn and master the art of playing the guitar. Integrating cutting-edge teaching methodologies and interactive features, this web application is poised to provide aspiring musicians with a personalized and effective online learning experience, catering to diverse skill levels and musical preferences.</p>
                     </div>
                 </div>
@@ -119,7 +128,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>    
 
     <section id="about">
         <div class="about container">
@@ -130,7 +139,7 @@
             </div>
             <div class="col-left">
                 <div class="about-img">
-                    <img src="./img/pfp.jpg" alt="img">
+                    <img src="./img/pfp.jpg" alt="Jaspher Tania's Profile Picture">
                 </div>
             </div>
         </div>
@@ -177,11 +186,14 @@
                     <ion-icon name="logo-google"></ion-icon>
                 </div>
                 <div class="social-item">
-                    <a href="www.linkedin.com/in/jaspher-plata-tania-077267257"><ion-icon name="logo-linkedin"></ion-icon></a>
+                    <a href="https://www.linkedin.com/in/jaspher-plata-tania-077267257" target="_blank" rel="noopener noreferrer">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
+    
 
 </body>
 </html>
