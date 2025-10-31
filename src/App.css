@@ -9,39 +9,56 @@
 *{box-sizing:border-box}
 body,html,#root{height:100%}
 
-.page-bg{
+.page-bg {
   background: var(--bg);
-  min-height:100vh;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding:40px 24px;
-  position:relative;
-  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 12px; /* ↓ tighter sides, keeps top spacing */
+  position: relative;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
 /* social bubble on left */
-.social-bubble{
-  position:fixed;
-  left:32px;
-  top:40px;
-  display:flex;
-  gap:10px;
-  background:var(--accent);
-  padding:10px 14px;
-  border-radius:999px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.12);
-  z-index:40;
+.social-bubble {
+  position: fixed;
+  left: 180px;
+  top: 40px;
+  display: flex;
+  gap: 10px;
+  background: var(--accent);
+  padding: 10px 14px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  z-index: 40;
 }
-.social-bubble .icon{
-  background:transparent;
-  color:#fff;
-  border:0;
-  padding:6px 8px;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:600;
+
+.social-bubble .icon {
+  background: transparent;
+  color: #fff;
+  border: 0;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
+
+.social-bubble .icon:hover {
+  transform: scale(1.15);
+  color: #00aced;
+}
+
+@media (max-width: 880px) {
+  .social-bubble {
+    left: 24px; /* slightly more space on small screens too */
+    top: 12px;
+  }
+}
+
 
 /* center column */
 .center-wrap{
@@ -52,24 +69,33 @@ body,html,#root{height:100%}
 }
 
 /* card */
-.card{
-  width:740px;
-  max-width:90vw;
-  background:var(--card);
-  border-radius:12px;
-  padding:32px;
-  box-shadow:0 8px 30px rgba(0,0,0,0.08);
-  color:var(--accent);
+.card {
+  width: 740px;
+  max-width: 95vw; /* ↓ expands horizontally, keeping responsiveness */
+  background: var(--card);
+  border-radius: 12px;
+  padding: 28px; /* slightly smaller inner padding */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  color: var(--accent);
 }
 
 /* right divider */
 .right-divider{
   width:2px;
   background:linear-gradient(#cfcfcf, #dcdcdc);
-  height:90vh;
+  height:233vh;
   border-radius:2px;
   align-self:flex-start;
   margin-top:8px;
+}
+
+.line {
+  width: 2px;
+  height: 150px;
+  background: linear-gradient(to bottom, #ccc, #eee);
+  border-radius: 2px;
+  margin: 0 10px;
+  align-self: center;
 }
 
 /* header inside card */
@@ -83,8 +109,8 @@ body,html,#root{height:100%}
 }
 
 .profile-pic{
-  width:96px;
-  height:96px;
+  width:200px;
+  height:200px;
   border-radius:50%;
   object-fit:cover;
   border:4px solid #fff;
@@ -93,13 +119,13 @@ body,html,#root{height:100%}
 
 .title-block .name{
   margin:0;
-  font-size:22px;
+  font-size:50px;
   font-weight:800;
   letter-spacing:0.2px;
 }
 .title-block .subtitle{
   margin:6px 0 0 0;
-  font-size:14px;
+  font-size:20px;
   color:var(--muted);
   font-weight:600;
 }
@@ -108,14 +134,14 @@ body,html,#root{height:100%}
 .intro{
   color:#444;
   line-height:1.5;
-  margin:16px 0 20px 0;
-  font-size:13.5px;
+  margin:16px 0 50px 0;
+  font-size:15px;
 }
 
 /* section title */
 .section-title{
   margin:18px 0 12px 0;
-  font-size:16px;
+  font-size:20px;
   font-weight:700;
 }
 
@@ -128,6 +154,7 @@ body,html,#root{height:100%}
 }
 
 .project-card {
+  position: relative;
   background: #fff;
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
@@ -137,6 +164,26 @@ body,html,#root{height:100%}
   align-items: flex-start;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.github-link {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  color: #333;
+  background: #f5f5f5;
+  border-radius: 50%;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.github-link:hover {
+  color: #000;
+  background: #e0e0e0;
+  transform: scale(1.15);
 }
 
 .project-card:hover {
@@ -153,18 +200,57 @@ body,html,#root{height:100%}
 }
 
 /* image rows for project previews */
-.image-row {
+.image-row.sakay,
+.image-row.three {
   display: flex;
-  gap: 12px;
-  align-items: stretch;
   justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+}
+
+.image-row.sakay .project-thumb,
+.image-row.three .project-thumb {
+  flex: 1;
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+.image-row.sakay .project-thumb {
+  flex: 1;
+  height: 175px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.image-row.three {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
 }
 
 .image-row.three .project-thumb {
-  flex: 0 0 calc((100% - 24px) / 3);
+  flex: 1;
   height: 175px;
+  width: 100%;
   object-fit: cover;
-  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+@media (max-width: 640px) {
+  .image-row.sakay .project-thumb,
+  .image-row.three .project-thumb {
+    flex: 0 0 100%;
+    height: 180px;
+    object-fit: cover;
+  }
 }
 
 .project-card .image-row.three {
@@ -243,9 +329,38 @@ body,html,#root{height:100%}
 }
 
 .tech-stack {
-  font-size: 14px;
-  color: #888;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
 }
+
+.tech-icon {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.project-links .icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: #444;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.project-links .icon-btn:hover {
+  color: #000;
+  transform: scale(1.15);
+}
+
 
 .project-links button {
   background: none;
@@ -341,5 +456,460 @@ body,html,#root{height:100%}
   .social-bubble {
     left: 12px;
     top: 12px;
+  }
+}
+
+/* =========================================================
+   EXTREME RESPONSIVENESS — Works for all screen sizes
+   ========================================================= */
+
+   /* =========================================================
+   MAKE SAKAY & HERBAPLANT IMAGES BEHAVE LIKE USE IMAGES
+   ========================================================= */
+
+/* Tablets and smaller */
+@media (max-width: 992px) {
+  /* 2 images side-by-side (like USE) */
+  .image-row.sakay .project-thumb,
+  .image-row.three .project-thumb {
+    flex: 0 0 calc(50% - 8px);
+    max-width: calc(50% - 8px);
+    height: 180px;
+    object-fit: contain;
+  }
+
+  /* Ensure proper wrapping and alignment */
+  .image-row.sakay,
+  .image-row.three {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+/* Phones (stack vertically) */
+@media (max-width: 640px) {
+  .image-row.sakay .project-thumb,
+  .image-row.three .project-thumb {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+  }
+}
+
+
+/* Large tablets / small laptops */
+@media (max-width: 1200px) {
+  .page-bg {
+    padding: 32px 16px;
+  }
+
+  .social-bubble {
+    left: 100px;
+    top: 28px;
+    transform: scale(0.95);
+  }
+
+  .card {
+    width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  /* Keep tablet images in a row but prevent zooming/stretching */
+  .image-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .image-row .project-thumb {
+    flex: 0 0 auto;           /* don’t stretch horizontally */
+    width: auto;              /* natural width */
+    max-width: 100%;           /* keep 3 images roughly in one row */
+    height: 500px;            /* consistent height across tablet */
+    object-fit: contain;      /* no cropping or zoom */
+  }
+
+  /* Two-image projects (USE) */
+  .image-row.two .project-thumb {
+    max-width: 48%;
+    height: 180px;
+  }
+
+  /* One-image projects (Kithara) */
+  .image-row.one .project-thumb {
+    max-width: 100%;
+    height: 200px;
+  }
+
+  .image-row img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* keep the rest of your tablet layout adjustments below */
+  .center-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .right-divider {
+    display: none;
+  }
+
+  .social-bubble {
+    left: 40px;
+    top: 20px;
+  }
+
+  .card-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .profile-pic {
+    width: 160px;
+    height: 160px;
+  }
+
+  .title-block .name {
+    font-size: 38px;
+  }
+
+  .title-block .subtitle {
+    font-size: 18px;
+  }
+
+  .intro {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .icons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large phones / small tablets */
+@media (max-width: 768px) {
+  .social-bubble {
+    left: 50%;
+    top: 16px;
+    transform: translateX(-50%) scale(0.9);
+  }
+
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+  }
+
+  .title-block .name {
+    font-size: 32px;
+  }
+
+  .title-block .subtitle {
+    font-size: 16px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .intro {
+    margin: 16px 0 32px 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .project-card {
+    padding: 16px;
+  }
+
+  .project-thumb {
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+
+  .proj-title {
+    font-size: 15px;
+  }
+
+  .proj-desc {
+    font-size: 13px;
+  }
+
+  .icons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .icon-label {
+    font-size: 13px;
+  }
+
+  .contact-row {
+    font-size: 13px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .right-divider {
+    display: none;
+  }
+}
+
+/* Small phones (<= 480px) */
+@media (max-width: 480px) {
+  .page-bg {
+    padding: 16px;
+  }
+
+  .card {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .profile-pic {
+    width: 110px;
+    height: 110px;
+  }
+
+  .social-bubble {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.85);
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .social-bubble .icon {
+    padding: 4px 6px;
+  }
+
+  .title-block .name {
+    font-size: 26px;
+  }
+
+  .title-block .subtitle {
+    font-size: 14px;
+  }
+
+  .intro {
+    font-size: 13px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .proj-title {
+    font-size: 14px;
+  }
+
+  .proj-desc {
+    font-size: 12.5px;
+  }
+
+  .tech-icon {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+
+  .icons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .icon-card {
+    min-height: 72px;
+    padding: 14px;
+  }
+
+  .icon-label {
+    font-size: 13px;
+  }
+
+  .contact-row {
+    flex-direction: column;
+    font-size: 12.5px;
+    padding: 10px;
+  }
+
+  .contact-icon {
+    font-size: 16px;
+  }
+}
+
+/* Ultra-small screens (<= 360px) */
+@media (max-width: 360px) {
+  .title-block .name {
+    font-size: 22px;
+  }
+
+  .profile-pic {
+    width: 90px;
+    height: 90px;
+  }
+
+  .intro {
+    font-size: 12.5px;
+  }
+
+  .proj-title {
+    font-size: 13px;
+  }
+
+  .proj-desc {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   PROJECT IMAGE RESPONSIVENESS FIX
+   ========================================================= */
+
+/* Ensure image rows wrap and stay centered on narrow viewports */
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Make each project image fully responsive */
+.image-row .project-thumb {
+  flex: 1 1 calc(33.333% - 10px);
+  max-width: calc(33.333% - 10px);
+  height: auto;
+  object-fit: contain;
+}
+
+/* 2-image layout */
+.image-row.two .project-thumb {
+  flex: 1 1 calc(50% - 10px);
+  max-width: calc(50% - 10px);
+}
+
+/* Single image layout */
+.image-row.one .project-thumb {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+/* Responsive behavior on smaller screens */
+@media (max-width: 900px) {
+  .image-row .project-thumb {
+    flex: 1 1 calc(50% - 8px);
+    max-width: calc(50% - 8px);
+  }
+}
+
+@media (max-width: 640px) {
+  .image-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .image-row .project-thumb {
+    flex: 1 1 100%;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.image-row img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   PROJECT IMAGE GRID FIX (MATCHES YOUR SCREENSHOT)
+   ========================================================= */
+
+/* Shared image row styles */
+.image-row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* Default image appearance */
+.image-row .project-thumb {
+  flex: 1;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Sakay: 3 images side by side */
+.image-row.sakay .project-thumb {
+  flex: 0 0 calc((100% - 24px) / 3);
+  height: 180px;
+}
+
+/* HerbaPlant: 3 images side by side */
+.image-row.three .project-thumb {
+  flex: 0 0 calc((100% - 24px) / 3);
+  height: 180px;
+}
+
+/* USE: 2 images side by side */
+.image-row.two .project-thumb {
+  flex: 0 0 calc((100% - 12px) / 2);
+  height: 200px;
+  object-fit: contain;
+}
+
+/* Kithara: single wide image */
+.image-row.one .project-thumb {
+  flex: 0 0 100%;
+  height: 240px;
+  object-fit: contain;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 900px) {
+  .image-row.sakay .project-thumb,
+  .image-row.three .project-thumb {
+    flex: 0 0 calc((100% - 12px) / 2);
+    height: 160px;
+  }
+
+  .image-row.two .project-thumb {
+    flex: 0 0 100%;
+    height: 180px;
+  }
+}
+
+@media (max-width: 640px) {
+  .image-row.sakay .project-thumb,
+  .image-row.three .project-thumb,
+  .image-row.two .project-thumb,
+  .image-row.one .project-thumb {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
   }
 }
