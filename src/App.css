@@ -15,12 +15,11 @@ body,html,#root{height:100%}
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 24px 12px; /* ↓ tighter sides, keeps top spacing */
+  padding: 24px 12px;
   position: relative;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-/* social bubble on left */
 .social-bubble {
   position: fixed;
   left: 180px;
@@ -54,13 +53,11 @@ body,html,#root{height:100%}
 
 @media (max-width: 880px) {
   .social-bubble {
-    left: 24px; /* slightly more space on small screens too */
+    left: 24px;
     top: 12px;
   }
 }
 
-
-/* center column */
 .center-wrap{
   display:flex;
   gap:24px;
@@ -68,18 +65,16 @@ body,html,#root{height:100%}
   position:relative;
 }
 
-/* card */
 .card {
   width: 740px;
-  max-width: 95vw; /* ↓ expands horizontally, keeping responsiveness */
+  max-width: 95vw;
   background: var(--card);
   border-radius: 12px;
-  padding: 28px; /* slightly smaller inner padding */
+  padding: 28px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   color: var(--accent);
 }
 
-/* right divider */
 .right-divider{
   width:2px;
   background:linear-gradient(#cfcfcf, #dcdcdc);
@@ -98,7 +93,6 @@ body,html,#root{height:100%}
   align-self: center;
 }
 
-/* header inside card */
 .card-header{
   display:flex;
   gap:20px;
@@ -130,7 +124,6 @@ body,html,#root{height:100%}
   font-weight:600;
 }
 
-/* intro paragraph */
 .intro{
   color:#444;
   line-height:1.5;
@@ -138,14 +131,12 @@ body,html,#root{height:100%}
   font-size:15px;
 }
 
-/* section title */
 .section-title{
   margin:18px 0 12px 0;
   font-size:20px;
   font-weight:700;
 }
 
-/* projects */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -199,7 +190,6 @@ body,html,#root{height:100%}
   margin-bottom: 10px;
 }
 
-/* image rows for project previews */
 .image-row.sakay,
 .image-row.three {
   display: flex;
@@ -307,7 +297,6 @@ body,html,#root{height:100%}
   }
 }
 
-/* Project Card text */
 .proj-title {
   font-size: 16px;
   font-weight: 700;
@@ -375,8 +364,6 @@ body,html,#root{height:100%}
   color: #000;
 }
 
-
-/* icons grid (tech/kits) */
 .icons-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -410,7 +397,6 @@ body,html,#root{height:100%}
   margin-top: 8px;
 }
 
-/* contact rows */
 .contact-list {
   display: flex;
   flex-direction: column;
@@ -442,7 +428,6 @@ body,html,#root{height:100%}
   text-align: center;
 }
 
-/* responsive */
 @media (max-width: 880px) {
   .projects-grid {
     grid-template-columns: 1fr;
@@ -459,17 +444,7 @@ body,html,#root{height:100%}
   }
 }
 
-/* =========================================================
-   EXTREME RESPONSIVENESS — Works for all screen sizes
-   ========================================================= */
-
-   /* =========================================================
-   MAKE SAKAY & HERBAPLANT IMAGES BEHAVE LIKE USE IMAGES
-   ========================================================= */
-
-/* Tablets and smaller */
 @media (max-width: 992px) {
-  /* 2 images side-by-side (like USE) */
   .image-row.sakay .project-thumb,
   .image-row.three .project-thumb {
     flex: 0 0 calc(50% - 8px);
@@ -478,7 +453,6 @@ body,html,#root{height:100%}
     object-fit: contain;
   }
 
-  /* Ensure proper wrapping and alignment */
   .image-row.sakay,
   .image-row.three {
     flex-wrap: wrap;
@@ -487,7 +461,7 @@ body,html,#root{height:100%}
   }
 }
 
-/* Phones (stack vertically) */
+/* Phones */
 @media (max-width: 640px) {
   .image-row.sakay .project-thumb,
   .image-row.three .project-thumb {
@@ -499,8 +473,6 @@ body,html,#root{height:100%}
   }
 }
 
-
-/* Large tablets / small laptops */
 @media (max-width: 1200px) {
   .page-bg {
     padding: 32px 16px;
@@ -518,7 +490,6 @@ body,html,#root{height:100%}
 }
 
 @media (max-width: 992px) {
-  /* Keep tablet images in a row but prevent zooming/stretching */
   .image-row {
     flex-direction: row;
     flex-wrap: wrap;
@@ -528,20 +499,18 @@ body,html,#root{height:100%}
   }
 
   .image-row .project-thumb {
-    flex: 0 0 auto;           /* don’t stretch horizontally */
-    width: auto;              /* natural width */
-    max-width: 100%;           /* keep 3 images roughly in one row */
-    height: 500px;            /* consistent height across tablet */
-    object-fit: contain;      /* no cropping or zoom */
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+    height: 500px;
+    object-fit: contain;
   }
 
-  /* Two-image projects (USE) */
   .image-row.two .project-thumb {
     max-width: 48%;
     height: 180px;
   }
 
-  /* One-image projects (Kithara) */
   .image-row.one .project-thumb {
     max-width: 100%;
     height: 200px;
@@ -552,7 +521,6 @@ body,html,#root{height:100%}
     margin: 0 auto;
   }
 
-  /* keep the rest of your tablet layout adjustments below */
   .center-wrap {
     flex-direction: column;
     align-items: center;
@@ -601,7 +569,6 @@ body,html,#root{height:100%}
   }
 }
 
-/* Large phones / small tablets */
 @media (max-width: 768px) {
   .social-bubble {
     left: 50%;
@@ -669,7 +636,6 @@ body,html,#root{height:100%}
   }
 }
 
-/* Small phones (<= 480px) */
 @media (max-width: 480px) {
   .page-bg {
     padding: 16px;
@@ -751,7 +717,6 @@ body,html,#root{height:100%}
   }
 }
 
-/* Ultra-small screens (<= 360px) */
 @media (max-width: 360px) {
   .title-block .name {
     font-size: 22px;
@@ -775,11 +740,6 @@ body,html,#root{height:100%}
   }
 }
 
-/* =========================================================
-   PROJECT IMAGE RESPONSIVENESS FIX
-   ========================================================= */
-
-/* Ensure image rows wrap and stay centered on narrow viewports */
 .image-row {
   display: flex;
   flex-wrap: wrap;
@@ -790,7 +750,6 @@ body,html,#root{height:100%}
   overflow: hidden;
 }
 
-/* Make each project image fully responsive */
 .image-row .project-thumb {
   flex: 1 1 calc(33.333% - 10px);
   max-width: calc(33.333% - 10px);
@@ -798,19 +757,16 @@ body,html,#root{height:100%}
   object-fit: contain;
 }
 
-/* 2-image layout */
 .image-row.two .project-thumb {
   flex: 1 1 calc(50% - 10px);
   max-width: calc(50% - 10px);
 }
 
-/* Single image layout */
 .image-row.one .project-thumb {
   flex: 1 1 100%;
   max-width: 100%;
 }
 
-/* Responsive behavior on smaller screens */
 @media (max-width: 900px) {
   .image-row .project-thumb {
     flex: 1 1 calc(50% - 8px);
@@ -838,11 +794,6 @@ body,html,#root{height:100%}
   margin: 0 auto;
 }
 
-/* =========================================================
-   PROJECT IMAGE GRID FIX (MATCHES YOUR SCREENSHOT)
-   ========================================================= */
-
-/* Shared image row styles */
 .image-row {
   display: flex;
   justify-content: center;
@@ -852,7 +803,6 @@ body,html,#root{height:100%}
   flex-wrap: wrap;
 }
 
-/* Default image appearance */
 .image-row .project-thumb {
   flex: 1;
   width: 100%;
@@ -862,33 +812,28 @@ body,html,#root{height:100%}
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* Sakay: 3 images side by side */
 .image-row.sakay .project-thumb {
   flex: 0 0 calc((100% - 24px) / 3);
   height: 180px;
 }
 
-/* HerbaPlant: 3 images side by side */
 .image-row.three .project-thumb {
   flex: 0 0 calc((100% - 24px) / 3);
   height: 180px;
 }
 
-/* USE: 2 images side by side */
 .image-row.two .project-thumb {
   flex: 0 0 calc((100% - 12px) / 2);
   height: 200px;
   object-fit: contain;
 }
 
-/* Kithara: single wide image */
 .image-row.one .project-thumb {
   flex: 0 0 100%;
   height: 240px;
   object-fit: contain;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 900px) {
   .image-row.sakay .project-thumb,
   .image-row.three .project-thumb {
