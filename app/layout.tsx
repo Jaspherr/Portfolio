@@ -1,10 +1,9 @@
 import './globals.css'
-import type { Metadata } from 'next'
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from '@/app/theme-provider'
 
-export const metadata: Metadata = {
-  title: 'Portfolio',
-  description: 'Frontend Developer Portfolio',
+export const metadata = {
+  title: 'Jaspher Tania',
+  description: 'Portfolio',
 }
 
 export default function RootLayout({
