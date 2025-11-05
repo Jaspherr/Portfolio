@@ -57,7 +57,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       {/* Scroll Progress Bar */}
-      <div className="fixed top-0 right-2 sm:right-4 md:right-6 h-screen z-50 w-[2px] sm:w-[3px] md:w-[4px] bg-muted-foreground/10">
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 bottom-0 right-2 sm:right-4 md:right-6 z-50 w-[2px] sm:w-[3px] md:w-[4px] bg-muted-foreground/10">
         <div
           className="w-full transition-all duration-300 ease-out"
           style={{
@@ -130,7 +131,7 @@ export default function Home() {
           ref={(el) => {
             sectionsRef.current[0] = el;
           }}
-          className="min-h-screen flex items-center opacity-0"
+          className="min-h-[85vh] flex items-center opacity-0"
         >
           <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
             <div className="lg:col-span-3 space-y-8">
