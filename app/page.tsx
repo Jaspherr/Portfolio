@@ -6,6 +6,60 @@ import { SiNotion, SiSpotify, SiOpenai } from "react-icons/si";
 import { FaGithub } from "react-icons/fa";
 import { useTheme } from "next-themes";
 
+const PROJECTS = [
+  {
+    year: "2025",
+    role: "Sakay",
+    company: "4th Year Capstone I & II Project",
+    description:
+      "App that tracks buses in real-time, showing locations and ETAs. Helps drivers optimize routes and reduces waiting times for passengers.",
+    tech: ["Dart", "JS", "Python", "Mongo", "React"],
+    repo: "#",
+  },
+  {
+    year: "2025",
+    role: "HerbaPlant",
+    company: "4th Year Side Project",
+    description:
+      "An herbal reference app that educates users about natural remedies and plant-based health solutions.",
+    tech: ["Dart", "Swift", "Python", "MySQL"],
+    repo: "#",
+  },
+  {
+    year: "2024",
+    role: "USE (UPang Student Essential)",
+    company: "2nd - 3rd Year Project",
+    description:
+      "Developed a school essentials app for UPang students to streamline distribution and enhance accessibility.",
+    tech: ["Dart", "Swift", "Laravel", "MySQL", "Mongo"],
+    repo: "#",
+  },
+  {
+    year: "2023",
+    role: "Kithara",
+    company: "2nd Year Project",
+    description:
+      "Built a website for guitar enthusiasts with improved design, content, and structure for a better learning experience.",
+    tech: ["HTML", "CSS", "JS", "Laravel", "Heroku"],
+    repo: "#",
+  },
+];
+
+const TECH_STACK = ["Dart", "Python", "Java", "React", "HTML", "CSS", "Node.js"];
+
+const SOCIAL_LINKS = [
+  {
+    name: "GitHub",
+    handle: "@Jaspherr",
+    url: "https://github.com/Jaspherr",
+  },
+  {
+    name: "LinkedIn",
+    handle: "Jaspher Tania",
+    url: "https://www.linkedin.com/in/jaspher-tania/",
+  },
+];
+
 export default function Home() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -30,8 +84,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
       if (docHeight > 0) {
         const progress = Math.min((scrollTop / docHeight) * 100, 100);
@@ -56,16 +109,36 @@ export default function Home() {
       { threshold: 0.3, rootMargin: "0px 0px -20% 0px" }
     );
 
-    sectionsRef.current.forEach(
-      (section) => section && observer.observe(section)
-    );
-
+    sectionsRef.current.forEach((section) => section && observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
+  const kits = [
+    { name: "VS Code", type: "image", src: "/assets/icons/vsc.png" },
+    { name: "Figma", type: "image", src: "/assets/icons/fig.png" },
+    {
+      name: "Notion",
+      type: "icon",
+      icon: SiNotion,
+      color: theme === "dark" ? "#fff" : "#000",
+    },
+    {
+      name: "Spotify",
+      type: "icon",
+      icon: SiSpotify,
+      color: "#1DB954",
+    },
+    {
+      name: "ChatGPT",
+      type: "icon",
+      icon: SiOpenai,
+      color: theme === "dark" ? "#ffffff" : "#000",
+    },
+    { name: "Kittl", type: "image", src: "/assets/icons/kittl.png" },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-
       {/* Custom Cursor Effect */}
       <div
         ref={cursorRef}
@@ -91,7 +164,7 @@ export default function Home() {
         />
       </div>
 
-      {/* Scroll Progress Bar - Enhanced */}
+      {/* Scroll Progress Bar */}
       <div className="fixed top-0 bottom-0 right-2 sm:right-4 md:right-6 z-50 w-[2px] sm:w-[3px] md:w-[4px] bg-muted-foreground/5 backdrop-blur-sm">
         <div
           className="w-full transition-all duration-500 ease-out relative"
@@ -107,7 +180,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Dark Mode Toggle - Premium Style */}
+      {/* Dark Mode Toggle */}
       <div className="flex justify-end max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 pt-2 sm:pt-3">
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -151,21 +224,15 @@ export default function Home() {
         </button>
       </div>
 
-      {/* Navigation - Premium Style */}
+      {/* Navigation */}
       <nav className="fixed left-6 sm:left-8 top-1/2 -translate-y-1/2 z-20 hidden lg:block">
         <div className="relative flex flex-col gap-6 items-center">
-
-          {/* Connecting Line */}
           <div className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-muted-foreground/20 to-transparent" />
-
-          {/* Section dots */}
-          {["intro", "work", "thoughts", "connect"].map((section, index) => (
+          {["intro", "work", "thoughts", "connect"].map((section) => (
             <button
               key={section}
               onClick={() =>
-                document
-                  .getElementById(section)
-                  ?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
               }
               className={`relative z-10 transition-all duration-500 ease-out ${
                 activeSection === section
@@ -190,8 +257,7 @@ export default function Home() {
       </nav>
 
       <main className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
-
-        {/* Intro - Award-Winning Style */}
+        {/* Intro */}
         <header
           id="intro"
           ref={(el) => {
@@ -213,21 +279,9 @@ export default function Home() {
               <div className="space-y-8 max-w-2xl">
                 <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed font-light">
                   UI/UX Designer and Front-End Developer dedicated to creating
-                  <span className="text-foreground font-normal">
-                    {" "}
-                    responsive
-                  </span>
-                  ,
-                  <span className="text-foreground font-normal">
-                    {" "}
-                    user-centered designs
-                  </span>
-                  , that
-                  <span className="text-foreground font-normal">
-                    {" "}
-                    balance aesthetics with functionality
-                  </span>
-                  .
+                  <span className="text-foreground font-normal"> responsive</span>,
+                  <span className="text-foreground font-normal"> user-centered designs</span>, that
+                  <span className="text-foreground font-normal"> balance aesthetics with functionality</span>.
                 </p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-muted-foreground">
@@ -250,15 +304,7 @@ export default function Home() {
                   Tech Stack
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  {[
-                    "Dart",
-                    "Python",
-                    "Java",
-                    "React",
-                    "HTML",
-                    "CSS",
-                    "Node.js",
-                  ].map((skill, idx) => (
+                  {TECH_STACK.map((skill, idx) => (
                     <span
                       key={skill}
                       className="group px-4 py-2 text-xs border border-border/50 rounded-full transition-all duration-300 hover:border-foreground/50 hover:bg-foreground/5 hover:scale-105 hover:shadow-sm backdrop-blur-sm bg-background/40"
@@ -281,110 +327,24 @@ export default function Home() {
           }}
           className="pt-10 sm:pt-32 pb-24 sm:pb-36 opacity-0 relative"
         >
-          {/* Section Header */}
           <div className="mb-16 sm:mb-24 flex items-baseline gap-6">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight hover-glow-text">
               Projects
             </h2>
             <div className="flex-1 h-px bg-gradient-to-r from-border via-border/50 to-transparent" />
-            <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
-              {
-                [
-                  {
-                    year: "2025",
-                    role: "Sakay",
-                    company: "4th Year Capstone I & II Project",
-                    description:
-                      "App that tracks buses in real-time, showing locations and ETAs. Helps drivers optimize routes and reduces waiting times for passengers.",
-                    tech: ["Dart", "JS", "Python", "Mongo", "React"],
-                    repo: "#",
-                  },
-                  {
-                    year: "2025",
-                    role: "HerbaPlant",
-                    company: "4th Year Side Project",
-                    description:
-                      "An herbal reference app that educates users about natural remedies and plant-based health solutions.",
-                    tech: ["Dart", "Swift", "Laravel", "MySQL", "Heroku"],
-                    repo: "#",
-                  },
-                  {
-                    year: "2024",
-                    role: "USE (UPang Student Essential)",
-                    company: "2nd - 3rd Year Project",
-                    description:
-                      "Developed a school essentials app for UPang students to streamline distribution and enhance accessibility.",
-                    tech: ["Dart", "Swift", "Laravel", "MySQL", "Heroku"],
-                    repo: "#",
-                  },
-                  {
-                    year: "2023",
-                    role: "Kithara",
-                    company: "2nd Year Project",
-                    description:
-                      "Built a website for guitar enthusiasts with improved design, content, and structure for a better learning experience.",
-                    tech: ["HTML", "CSS", "JS", "Laravel", "Heroku"],
-                    repo: "#",
-                  },
-                ].length
-              }{" "}
-              Projects
-            </span>
           </div>
 
           <div className="space-y-8 sm:space-y-4">
-            {[
-              {
-                year: "2025",
-                role: "Sakay",
-                company: "4th Year Capstone I & II Project",
-                description:
-                  "App that tracks buses in real-time, showing locations and ETAs. Helps drivers optimize routes and reduces waiting times for passengers.",
-                tech: ["Dart", "JS", "Python", "Mongo", "React"],
-                repo: "#",
-              },
-              {
-                year: "2025",
-                role: "HerbaPlant",
-                company: "4th Year Side Project",
-                description:
-                  "An herbal reference app that educates users about natural remedies and plant-based health solutions.",
-                tech: ["Dart", "Swift", "Laravel", "MySQL", "Heroku"],
-                repo: "#",
-              },
-              {
-                year: "2024",
-                role: "USE (UPang Student Essential)",
-                company: "2nd - 3rd Year Project",
-                description:
-                  "Developed a school essentials app for UPang students to streamline distribution and enhance accessibility.",
-                tech: ["Dart", "Swift", "Laravel", "MySQL", "Heroku"],
-                repo: "#",
-              },
-              {
-                year: "2023",
-                role: "Kithara",
-                company: "2nd Year Project",
-                description:
-                  "Built a website for guitar enthusiasts with improved design, content, and structure for a better learning experience.",
-                tech: ["HTML", "CSS", "JS", "Laravel", "Heroku"],
-                repo: "#",
-              },
-            ].map((job, index) => (
+            {PROJECTS.map((job, index) => (
               <div
                 key={index}
                 className="group relative"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* Premium Card Container */}
                 <div className="relative p-8 sm:p-6 rounded-none border-0 border-b border-border/50 bg-transparent backdrop-blur-0 transition-all duration-500 hover:border-border hover:bg-transparent hover:shadow-none hover:-translate-y-0">
-
-                  {/* Gradient Overlay on Hover */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-foreground/0 via-foreground/5 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                   <div className="grid lg:grid-cols-12 gap-8 relative z-10">
-
-                    {/* Year */}
                     <div className="lg:col-span-2 space-y-4">
                       <div className="text-2xl sm:text-3xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                         {job.year}
@@ -392,10 +352,7 @@ export default function Home() {
                       <div className="w-12 h-px bg-border group-hover:bg-foreground/50 transition-colors duration-300" />
                     </div>
 
-                    {/* Project Details */}
-                    <div className="lg:col-span-10 space-y-6 relative">
-
-                      {/* GitHub Icon */}
+                    <div className="lg:col-span-10 space-y-4 relative">
                       <a
                         href={job.repo}
                         target="_blank"
@@ -410,16 +367,14 @@ export default function Home() {
                         <h3 className="text-2xl sm:text-3xl font-light tracking-tight hover-glow-text">
                           {job.role}
                         </h3>
-                        <div className="text-muted-foreground font-light">
-                          {job.company}
-                        </div>
+                        <div className="text-muted-foreground font-light">{job.company}</div>
                       </div>
 
                       <p className="text-muted-foreground leading-relaxed max-w-2xl text-base sm:text-lg font-light">
                         {job.description}
                       </p>
 
-                      <div className="flex flex-wrap gap-3 pt-4">
+                      <div className="flex flex-wrap gap-3 pt-2">
                         {job.tech.map((tech, techIdx) => (
                           <span
                             key={tech}
@@ -456,36 +411,13 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8">
-            {[
-              { name: "VS Code", type: "image", src: "/assets/icons/vsc.png" },
-              { name: "Figma", type: "image", src: "/assets/icons/fig.png" },
-              {
-                name: "Notion",
-                type: "icon",
-                icon: SiNotion,
-                color: theme === "dark" ? "#fff" : "#000",
-              },
-              {
-                name: "Spotify",
-                type: "icon",
-                icon: SiSpotify,
-                color: "#1DB954",
-              },
-              {
-                name: "ChatGPT",
-                type: "icon",
-                icon: SiOpenai,
-                color: theme === "dark" ? "#ffffff" : "#000",
-              },
-            ].map((kit, idx) => (
+            {kits.map((kit, idx) => (
               <div
                 key={kit.name}
                 className="group flex flex-col items-center text-center space-y-3 cursor-pointer"
                 style={{ animationDelay: `${idx * 50}ms` }}
               >
                 <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center border border-border/50 rounded-2xl bg-background/40 backdrop-blur-sm hover:border-foreground/50 hover:bg-background/60 hover:scale-105 hover:shadow-lg transition-all duration-300">
-
-                  {/* Hover glow effect */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-foreground/0 via-foreground/10 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   <div className="relative z-10">
@@ -518,7 +450,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Connect - Premium Contact Section */}
+        {/* Connect */}
         <section
           id="connect"
           ref={(el) => {
@@ -526,7 +458,6 @@ export default function Home() {
           }}
           className="py-24 sm:py-36 opacity-0 relative"
         >
-          {/* Decorative Background */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-foreground/5 rounded-full blur-3xl -z-10" />
 
           <div className="grid lg:grid-cols-2 gap-16 sm:gap-20 relative z-10">
@@ -536,8 +467,7 @@ export default function Home() {
                   Let&apos;s Connect
                 </h2>
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-light max-w-xl">
-                  Always interested in new opportunities, collaborations, and
-                  conversations about technology and design.
+                  Always interested in new opportunities, collaborations, and conversations about technology and design.
                 </p>
               </div>
 
@@ -545,11 +475,7 @@ export default function Home() {
                 href="mailto:taniajaspher@gmail.com"
                 className="group inline-flex items-center gap-4 px-6 py-4 rounded-xl border border-border/50 bg-background/40 backdrop-blur-sm hover:border-foreground/50 hover:bg-background/60 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
               >
-                <span className="text-base sm:text-lg font-light">
-                  taniajaspher@gmail.com
-                </span>
-
-                {/* Mail Icon */}
+                <span className="text-base sm:text-lg font-light">taniajaspher@gmail.com</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5 transform group-hover:translate-x-1 group-hover:scale-110 transition-all duration-300"
@@ -572,25 +498,13 @@ export default function Home() {
                 Elsewhere
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  {
-                    name: "GitHub",
-                    handle: "@Jaspherr",
-                    url: "https://github.com/Jaspherr",
-                  },
-                  {
-                    name: "LinkedIn",
-                    handle: "Jaspher Tania",
-                    url: "https://www.linkedin.com/in/jaspher-tania/",
-                  },
-                ].map((social, idx) => (
+                {SOCIAL_LINKS.map((social, idx) => (
                   <Link
                     key={social.name}
                     href={social.url}
                     className="group relative p-6 rounded-xl border border-border/50 bg-background/40 backdrop-blur-sm transition-all duration-300 hover:border-border hover:bg-background/60 hover:shadow-xl hover:-translate-y-1"
                     style={{ animationDelay: `${idx * 100}ms` }}
                   >
-                    {/* Hover gradient */}
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-foreground/0 via-foreground/5 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                     <div className="relative z-10 space-y-2">
