@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { SiNotion, SiSpotify, SiOpenai } from "react-icons/si";
-import { FaGithub } from "react-icons/fa";
 import { useTheme } from "next-themes";
 
 const PROJECTS = [
@@ -14,7 +13,6 @@ const PROJECTS = [
     description:
       "App that tracks buses in real-time, showing locations and ETAs. Helps drivers optimize routes and reduces waiting times for passengers.",
     tech: ["Dart", "JS", "Python", "Mongo", "React"],
-    repo: "#",
     images: {
       mobile: [
         "/projects/Sakay/Mobile/CurrentLocation.png",
@@ -37,7 +35,6 @@ const PROJECTS = [
     description:
       "An herbal reference app that educates users about natural remedies and plant-based health solutions.",
     tech: ["Dart", "Swift", "Python", "MySQL"],
-    repo: "#",
     images: {
       mobile: [
         "/projects/HerbaPlant/Authentication.png",
@@ -55,7 +52,6 @@ const PROJECTS = [
     description:
       "Developed a school essentials app for UPang students to streamline distribution and enhance accessibility.",
     tech: ["Dart", "Swift", "Laravel", "MySQL", "Mongo"],
-    repo: "#",
     images: {
       mobile: [
         "/projects/USE/Welcome.png",
@@ -73,7 +69,6 @@ const PROJECTS = [
     description:
       "Built a website for guitar enthusiasts with improved design, content, and structure for a better learning experience.",
     tech: ["HTML", "CSS", "JS", "Laravel", "Heroku"],
-    repo: null,
     images: {
       web: ["/projects/Kithara/kt.png"],
     },
@@ -112,6 +107,8 @@ export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -414,18 +411,6 @@ export default function Home() {
                     </div>
 
                     <div className="lg:col-span-10 space-y-4 relative">
-                      {job.repo && (
-                        <a
-                          href={job.repo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="absolute -top-2 -right-2 p-3 rounded-full border border-border/50 bg-background/80 backdrop-blur-sm text-muted-foreground hover:text-foreground hover:border-foreground/50 hover:bg-foreground/5 hover:scale-110 transition-all duration-300 shadow-sm hover:shadow-md"
-                          aria-label={`${job.role} GitHub Repository`}
-                        >
-                          <FaGithub size={20} />
-                        </a>
-                      )}
-
                       <div className="space-y-2 pr-12">
                         <h3 className="text-2xl sm:text-3xl font-light tracking-tight hover-glow-text">
                           {job.role}
@@ -468,30 +453,42 @@ export default function Home() {
                                 </button>
                               </div>
 
-                              <div className="flex flex-row gap-3 overflow-x-auto py-1">
-                                {(selectedView === "mobile"
-                                  ? job.images.mobile
-                                  : job.images.web
-                                ).map((imgSrc, imgIdx) => (
-                                  <div
-                                    key={imgIdx}
-                                    className={`relative flex-shrink-0 overflow-hidden rounded-lg border-[0.15px] border-foreground/10 bg-background/80 backdrop-blur-sm ${
-                                      selectedView === "mobile"
-                                        ? "w-16 sm:w-20 md:w-24 aspect-[9/17.5]"
-                                        : "w-60 sm:w-64 md:w-72 aspect-video"
-                                    }`}
-                                  >
-                                    <img
-                                      src={imgSrc}
-                                      alt={`${
-                                        job.role
-                                      } ${selectedView} screenshot ${
-                                        imgIdx + 1
-                                      }`}
-                                      className="w-full h-full object-contain object-center rounded-md scale-[1.01]"
-                                    />
-                                  </div>
-                                ))}
+                              <div className="relative">
+                                {/* Scrollable image container */}
+                                <div className="flex flex-row gap-3 overflow-x-auto py-1 scroll-smooth snap-x snap-mandatory scrollbar-hide">
+                                  {(selectedView === "mobile"
+                                    ? job.images.mobile
+                                    : job.images.web
+                                  ).map((imgSrc, imgIdx) => (
+                                    <div
+                                      key={imgIdx}
+                                      className={`relative flex-shrink-0 overflow-hidden rounded-lg border-[0.15px] border-foreground/10 bg-background/80 backdrop-blur-sm ${
+                                        selectedView === "mobile"
+                                          ? "w-16 sm:w-20 md:w-24 aspect-[9/17.5]"
+                                          : "w-60 sm:w-64 md:w-72 aspect-video"
+                                      } snap-start`}
+                                    >
+                                      <img
+                                        src={imgSrc}
+                                        alt={`${job.role} screenshot ${
+                                          imgIdx + 1
+                                        }`}
+                                        className="w-full h-full object-contain object-center rounded-md cursor-pointer"
+                                        onClick={() => setPreviewImage(imgSrc)}
+                                      />
+                                    </div>
+                                  ))}
+                                </div>
+
+                                {/* Right fade indicator */}
+                                {selectedView === "web" && (
+                                  <div className="pointer-events-none absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-background via-background/90 to-transparent" />
+                                )}
+
+                                {/* Optional: left fade indicator */}
+                                {selectedView === "web" && (
+                                  <div className="pointer-events-none absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-background via-background/90 to-transparent" />
+                                )}
                               </div>
                             </>
                           )}
@@ -507,10 +504,16 @@ export default function Home() {
                                 >
                                   <img
                                     src={imgSrc}
-                                    alt={`${job.role} mobile screenshot ${
-                                      imgIdx + 1
-                                    }`}
-                                    className="w-full h-full object-contain object-center rounded-md"
+                                    alt={`${job.role} screenshot ${imgIdx + 1}`}
+                                    className="w-full h-full object-contain object-center rounded-md cursor-pointer"
+                                    onClick={() => {
+                                      setIsClosing(false);
+                                      setPreviewImage(null);
+                                      setTimeout(
+                                        () => setPreviewImage(imgSrc),
+                                        10
+                                      );
+                                    }}
                                   />
                                 </div>
                               ))}
@@ -524,14 +527,20 @@ export default function Home() {
                                 <div
                                   key={imgIdx}
                                   className="relative flex-shrink-0 overflow-hidden rounded-lg border-[0.15px] border-foreground/10 bg-background/80 backdrop-blur-sm w-60 sm:w-64 md:w-72"
-                                  style={{ aspectRatio: "17 / 8" }} // 👈 shorter height than Sakay’s 16:9
+                                  style={{ aspectRatio: "17 / 8" }}
                                 >
                                   <img
                                     src={imgSrc}
-                                    alt={`${job.role} web screenshot ${
-                                      imgIdx + 1
-                                    }`}
-                                    className="w-full h-full object-contain object-center rounded-md scale-[1.01]"
+                                    alt={`${job.role} screenshot ${imgIdx + 1}`}
+                                    className="w-full h-full object-contain object-center rounded-md cursor-pointer"
+                                    onClick={() => {
+                                      setIsClosing(false);
+                                      setPreviewImage(null);
+                                      setTimeout(
+                                        () => setPreviewImage(imgSrc),
+                                        10
+                                      );
+                                    }}
                                   />
                                 </div>
                               ))}
@@ -699,6 +708,48 @@ export default function Home() {
             </div>
           </div>
         </footer>
+
+        {previewImage && (
+          <div
+            className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-6 transition-all duration-300 ease-in-out ${
+              isClosing ? "opacity-0 scale-95" : "opacity-100 scale-100"
+            }`}
+            onClick={() => {
+              setIsClosing(true);
+              setTimeout(() => {
+                setPreviewImage(null);
+                setIsClosing(false);
+              }, 300);
+            }}
+          >
+            <div className="relative max-w-5xl w-full flex justify-center">
+              <img
+                src={previewImage}
+                alt="Preview"
+                className={`max-h-[90vh] w-auto rounded-lg shadow-2xl ${
+                  isClosing ? "animate-zoomOut" : "animate-zoomIn"
+                }`}
+                onClick={(e) => e.stopPropagation()}
+              />
+
+              {/* Close button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsClosing(true);
+                  setTimeout(() => {
+                    setPreviewImage(null);
+                    setIsClosing(false);
+                  }, 300);
+                }}
+                className="absolute top-4 right-4 text-white text-3xl font-light hover:text-gray-300"
+                aria-label="Close preview"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

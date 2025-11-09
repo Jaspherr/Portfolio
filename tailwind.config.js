@@ -5,6 +5,10 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    'animate-zoomIn',
+    'animate-zoomOut',
+  ],
   theme: {
     extend: {
       colors: {
