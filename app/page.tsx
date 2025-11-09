@@ -15,6 +15,20 @@ const PROJECTS = [
       "App that tracks buses in real-time, showing locations and ETAs. Helps drivers optimize routes and reduces waiting times for passengers.",
     tech: ["Dart", "JS", "Python", "Mongo", "React"],
     repo: "#",
+    images: {
+      mobile: [
+        "/projects/Sakay/Mobile/CurrentLocation.png",
+        "/projects/Sakay/Mobile/DriverManageVehicle.png",
+        "/projects/Sakay/Mobile/OnRide.png",
+        "/projects/Sakay/Mobile/Profile.png",
+      ],
+      web: [
+        "/projects/Sakay/Web/AAA.png",
+        "/projects/Sakay/Web/Reports.png",
+        "/projects/Sakay/Web/Sidepanel-1.png",
+        "/projects/Sakay/Web/Sidepanel.png",
+      ],
+    },
   },
   {
     year: "2025",
@@ -24,6 +38,15 @@ const PROJECTS = [
       "An herbal reference app that educates users about natural remedies and plant-based health solutions.",
     tech: ["Dart", "Swift", "Python", "MySQL"],
     repo: "#",
+    images: {
+      mobile: [
+        "/projects/HerbaPlant/Authentication.png",
+        "/projects/HerbaPlant/Chatbot.png",
+        "/projects/HerbaPlant/PlantInfo.png",
+        "/projects/HerbaPlant/PromptHistory.png",
+        "/projects/HerbaPlant/Scan.png",
+      ],
+    },
   },
   {
     year: "2024",
@@ -33,6 +56,15 @@ const PROJECTS = [
       "Developed a school essentials app for UPang students to streamline distribution and enhance accessibility.",
     tech: ["Dart", "Swift", "Laravel", "MySQL", "Mongo"],
     repo: "#",
+    images: {
+      mobile: [
+        "/projects/USE/Welcome.png",
+        "/projects/USE/Home.png",
+        "/projects/USE/Announcement.png",
+        "/projects/USE/Profile1.png",
+        "/projects/USE/Profile2.png",
+      ],
+    },
   },
   {
     year: "2023",
@@ -41,11 +73,22 @@ const PROJECTS = [
     description:
       "Built a website for guitar enthusiasts with improved design, content, and structure for a better learning experience.",
     tech: ["HTML", "CSS", "JS", "Laravel", "Heroku"],
-    repo: "#",
+    repo: null,
+    images: {
+      web: ["/projects/Kithara/kt.png"],
+    },
   },
 ];
 
-const TECH_STACK = ["Dart", "Python", "Java", "React", "HTML", "CSS", "Node.js"];
+const TECH_STACK = [
+  "Dart",
+  "Python",
+  "Java",
+  "React",
+  "HTML",
+  "CSS",
+  "Node.js",
+];
 
 const SOCIAL_LINKS = [
   {
@@ -61,6 +104,7 @@ const SOCIAL_LINKS = [
 ];
 
 export default function Home() {
+  const [selectedView, setSelectedView] = useState("mobile");
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -84,7 +128,8 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
 
       if (docHeight > 0) {
         const progress = Math.min((scrollTop / docHeight) * 100, 100);
@@ -109,7 +154,9 @@ export default function Home() {
       { threshold: 0.3, rootMargin: "0px 0px -20% 0px" }
     );
 
-    sectionsRef.current.forEach((section) => section && observer.observe(section));
+    sectionsRef.current.forEach(
+      (section) => section && observer.observe(section)
+    );
     return () => observer.disconnect();
   }, []);
 
@@ -138,7 +185,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden overflow-y-auto">
       {/* Custom Cursor Effect */}
       <div
         ref={cursorRef}
@@ -232,7 +279,9 @@ export default function Home() {
             <button
               key={section}
               onClick={() =>
-                document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
+                document
+                  .getElementById(section)
+                  ?.scrollIntoView({ behavior: "smooth" })
               }
               className={`relative z-10 transition-all duration-500 ease-out ${
                 activeSection === section
@@ -279,9 +328,21 @@ export default function Home() {
               <div className="space-y-8 max-w-2xl">
                 <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed font-light">
                   UI/UX Designer and Front-End Developer dedicated to creating
-                  <span className="text-foreground font-normal"> responsive</span>,
-                  <span className="text-foreground font-normal"> user-centered designs</span>, that
-                  <span className="text-foreground font-normal"> balance aesthetics with functionality</span>.
+                  <span className="text-foreground font-normal">
+                    {" "}
+                    responsive
+                  </span>
+                  ,
+                  <span className="text-foreground font-normal">
+                    {" "}
+                    user-centered designs
+                  </span>
+                  , that
+                  <span className="text-foreground font-normal">
+                    {" "}
+                    balance aesthetics with functionality
+                  </span>
+                  .
                 </p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-muted-foreground">
@@ -353,26 +414,131 @@ export default function Home() {
                     </div>
 
                     <div className="lg:col-span-10 space-y-4 relative">
-                      <a
-                        href={job.repo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="absolute -top-2 -right-2 p-3 rounded-full border border-border/50 bg-background/80 backdrop-blur-sm text-muted-foreground hover:text-foreground hover:border-foreground/50 hover:bg-foreground/5 hover:scale-110 transition-all duration-300 shadow-sm hover:shadow-md"
-                        aria-label={`${job.role} GitHub Repository`}
-                      >
-                        <FaGithub size={20} />
-                      </a>
+                      {job.repo && (
+                        <a
+                          href={job.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute -top-2 -right-2 p-3 rounded-full border border-border/50 bg-background/80 backdrop-blur-sm text-muted-foreground hover:text-foreground hover:border-foreground/50 hover:bg-foreground/5 hover:scale-110 transition-all duration-300 shadow-sm hover:shadow-md"
+                          aria-label={`${job.role} GitHub Repository`}
+                        >
+                          <FaGithub size={20} />
+                        </a>
+                      )}
 
                       <div className="space-y-2 pr-12">
                         <h3 className="text-2xl sm:text-3xl font-light tracking-tight hover-glow-text">
                           {job.role}
                         </h3>
-                        <div className="text-muted-foreground font-light">{job.company}</div>
+                        <div className="text-muted-foreground font-light">
+                          {job.company}
+                        </div>
                       </div>
 
                       <p className="text-muted-foreground leading-relaxed max-w-2xl text-base sm:text-lg font-light">
                         {job.description}
                       </p>
+
+                      {/* Project Images Section */}
+                      {job.images && (
+                        <div className="pt-4">
+                          {/* If project has both mobile and web (like Sakay) */}
+                          {job.images.mobile && job.images.web && (
+                            <>
+                              <div className="flex gap-3 mb-4">
+                                <button
+                                  onClick={() => setSelectedView("mobile")}
+                                  className={`px-4 py-2 text-sm rounded-md border transition-all duration-300 ${
+                                    selectedView === "mobile"
+                                      ? "bg-foreground text-background border-foreground"
+                                      : "bg-background text-muted-foreground border-border hover:border-foreground/50"
+                                  }`}
+                                >
+                                  Mobile
+                                </button>
+                                <button
+                                  onClick={() => setSelectedView("web")}
+                                  className={`px-4 py-2 text-sm rounded-md border transition-all duration-300 ${
+                                    selectedView === "web"
+                                      ? "bg-foreground text-background border-foreground"
+                                      : "bg-background text-muted-foreground border-border hover:border-foreground/50"
+                                  }`}
+                                >
+                                  Web
+                                </button>
+                              </div>
+
+                              <div className="flex flex-row gap-3 overflow-x-auto py-1">
+                                {(selectedView === "mobile"
+                                  ? job.images.mobile
+                                  : job.images.web
+                                ).map((imgSrc, imgIdx) => (
+                                  <div
+                                    key={imgIdx}
+                                    className={`relative flex-shrink-0 overflow-hidden rounded-lg border-[0.15px] border-foreground/10 bg-background/80 backdrop-blur-sm ${
+                                      selectedView === "mobile"
+                                        ? "w-16 sm:w-20 md:w-24 aspect-[9/17.5]"
+                                        : "w-60 sm:w-64 md:w-72 aspect-video"
+                                    }`}
+                                  >
+                                    <img
+                                      src={imgSrc}
+                                      alt={`${
+                                        job.role
+                                      } ${selectedView} screenshot ${
+                                        imgIdx + 1
+                                      }`}
+                                      className="w-full h-full object-contain object-center rounded-md scale-[1.01]"
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          )}
+
+                          {/* If project has only mobile (HerbaPlant & USE) */}
+                          {job.images.mobile && !job.images.web && (
+                            <div className="flex flex-row gap-3 overflow-x-auto py-1">
+                              {job.images.mobile.map((imgSrc, imgIdx) => (
+                                <div
+                                  key={imgIdx}
+                                  className="relative flex-shrink-0 overflow-hidden rounded-lg border-[0.15px] border-foreground/10 bg-background/80 backdrop-blur-sm w-16 sm:w-20 md:w-24"
+                                  style={{ aspectRatio: "8 / 17" }}
+                                >
+                                  <img
+                                    src={imgSrc}
+                                    alt={`${job.role} mobile screenshot ${
+                                      imgIdx + 1
+                                    }`}
+                                    className="w-full h-full object-contain object-center rounded-md"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* If project has only web (Kithara) */}
+                          {job.images.web && !job.images.mobile && (
+                            <div className="flex flex-row gap-3 overflow-x-auto py-1">
+                              {job.images.web.map((imgSrc, imgIdx) => (
+                                <div
+                                  key={imgIdx}
+                                  className="relative flex-shrink-0 overflow-hidden rounded-lg border-[0.15px] border-foreground/10 bg-background/80 backdrop-blur-sm w-60 sm:w-64 md:w-72"
+                                  style={{ aspectRatio: "17 / 8" }} // 👈 shorter height than Sakay’s 16:9
+                                >
+                                  <img
+                                    src={imgSrc}
+                                    alt={`${job.role} web screenshot ${
+                                      imgIdx + 1
+                                    }`}
+                                    className="w-full h-full object-contain object-center rounded-md scale-[1.01]"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
 
                       <div className="flex flex-wrap gap-3 pt-2">
                         {job.tech.map((tech, techIdx) => (
@@ -467,7 +633,8 @@ export default function Home() {
                   Let&apos;s Connect
                 </h2>
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-light max-w-xl">
-                  Always interested in new opportunities, collaborations, and conversations about technology and design.
+                  Always interested in new opportunities, collaborations, and
+                  conversations about technology and design.
                 </p>
               </div>
 
@@ -475,7 +642,9 @@ export default function Home() {
                 href="mailto:taniajaspher@gmail.com"
                 className="group inline-flex items-center gap-4 px-6 py-4 rounded-xl border border-border/50 bg-background/40 backdrop-blur-sm hover:border-foreground/50 hover:bg-background/60 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
               >
-                <span className="text-base sm:text-lg font-light">taniajaspher@gmail.com</span>
+                <span className="text-base sm:text-lg font-light">
+                  taniajaspher@gmail.com
+                </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5 transform group-hover:translate-x-1 group-hover:scale-110 transition-all duration-300"
