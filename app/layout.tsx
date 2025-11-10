@@ -1,5 +1,5 @@
 import './globals.css';
-import { ThemeProvider } from '@/app/theme-provider';
+import { ThemeProvider } from './theme-provider';
 
 export const metadata = {
   title: 'Jaspher Tania',
