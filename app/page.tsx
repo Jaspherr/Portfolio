@@ -84,6 +84,7 @@ const TECH_STACK = [
   "HTML",
   "CSS",
   "JavaScript",
+  "Git"
 ];
 
 const SOCIAL_LINKS = [
@@ -360,7 +361,7 @@ export default function Home() {
             <div className="lg:col-span-2 flex flex-col justify-end space-y-8 lg:translate-y-[-6rem]">
               <div className="space-y-6">
                 <div className="text-xs text-muted-foreground font-mono tracking-wider uppercase">
-                  Tech Stack
+                  Skills
                 </div>
                 <div className="flex flex-wrap gap-3">
                   {TECH_STACK.map((skill, idx) => (
