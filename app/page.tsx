@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { SiNotion, SiSpotify, SiOpenai } from "react-icons/si";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { useTheme } from "next-themes";
 
 const PROJECTS = [
@@ -11,7 +12,7 @@ const PROJECTS = [
     role: "Sakay",
     company: "4th Year Capstone I & II Project",
     description:
-      "App that tracks buses in real-time, showing locations and ETAs. Helps drivers optimize routes and reduces waiting times for passengers.",
+      "Designed and developed a real-time bus tracking app with live locations and ETAs, featuring an intuitive interface that helps drivers optimize routes and reduces passenger waiting times.",
     tech: ["Dart", "JS", "Python", "Mongo", "React"],
     images: {
       mobile: [
@@ -33,7 +34,7 @@ const PROJECTS = [
     role: "HerbaPlant",
     company: "4th Year Side Project",
     description:
-      "An herbal reference app that educates users about natural remedies and plant-based health solutions.",
+      "Developed an herbal reference app that identifies scanned herbs and provides natural remedy information through a clean, AI-assisted mobile interface.",
     tech: ["Dart", "Swift", "Python", "MySQL"],
     images: {
       mobile: [
@@ -50,7 +51,7 @@ const PROJECTS = [
     role: "USE (UPang Student Essential)",
     company: "2nd - 3rd Year Project",
     description:
-      "Developed a school essentials app for UPang students to streamline distribution and enhance accessibility.",
+      "A school essentials app for UPang students, focusing on UI/UX implementation and mobile front-end development for a seamless user experience.",
     tech: ["Dart", "Swift", "Laravel", "MySQL", "Mongo"],
     images: {
       mobile: [
@@ -67,7 +68,7 @@ const PROJECTS = [
     role: "Kithara",
     company: "2nd Year Project",
     description:
-      "Built a website for guitar enthusiasts with improved design, content, and structure for a better learning experience.",
+      "Built a responsive web platform for guitar enthusiasts, focusing on a refined layout, engaging content structure, and modern UI improvements to enhance the overall learning experience.",
     tech: ["HTML", "CSS", "JS", "Laravel", "Heroku"],
     images: {
       web: ["/projects/Kithara/kt.png"],
@@ -82,7 +83,7 @@ const TECH_STACK = [
   "React",
   "HTML",
   "CSS",
-  "Node.js",
+  "JavaScript",
 ];
 
 const SOCIAL_LINKS = [
@@ -158,7 +159,7 @@ export default function Home() {
   }, []);
 
   const kits = [
-    { name: "VS Code", type: "image", src: "/assets/icons/vsc.png" },
+    { name: "Visual Studio Code", type: "image", src: "/assets/icons/vsc.png" },
     { name: "Figma", type: "image", src: "/assets/icons/fig.png" },
     {
       name: "Notion",
@@ -383,51 +384,53 @@ export default function Home() {
           ref={(el) => {
             sectionsRef.current[1] = el;
           }}
-          className="pt-10 sm:pt-32 pb-24 sm:pb-36 opacity-0 relative"
+          className="pt-10 sm:pt-24 md:pt-32 pb-24 sm:pb-36 relative"
         >
-          <div className="mb-16 sm:mb-24 flex items-baseline gap-6">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight hover-glow-text">
+          <div className="mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight hover-glow-text mb-4">
               Projects
             </h2>
-            <div className="flex-1 h-px bg-gradient-to-r from-border via-border/50 to-transparent" />
+            <p className="text-muted-foreground text-base sm:text-lg font-light max-w-3xl leading-relaxed">
+              A showcase of projects highlighting my focus on intuitive design,
+              responsive interfaces, and purposeful digital experiences.
+            </p>
           </div>
 
-          <div className="space-y-8 sm:space-y-4">
+          <div className="space-y-12">
             {PROJECTS.map((job, index) => (
               <div
                 key={index}
-                className="group relative"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="group relative border-b border-border/40 hover:border-border/70 transition-all duration-500"
               >
-                <div className="relative p-8 sm:p-6 rounded-none border-0 border-b border-border/50 bg-transparent backdrop-blur-0 transition-all duration-500 hover:border-border hover:bg-transparent hover:shadow-none hover:-translate-y-0">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-foreground/0 via-foreground/5 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                  <div className="grid lg:grid-cols-12 gap-8 relative z-10">
-                    <div className="lg:col-span-2 space-y-4">
+                <div className="relative p-6 sm:p-8 rounded-2xl bg-background/10 hover:bg-background/20 transition-all duration-500">
+                  <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 md:gap-10 relative z-10">
+                    {/* Year */}
+                    <div className="md:col-span-2 lg:col-span-2">
                       <div className="text-2xl sm:text-3xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                         {job.year}
                       </div>
-                      <div className="w-12 h-px bg-border group-hover:bg-foreground/50 transition-colors duration-300" />
+                      <div className="w-10 h-px bg-border mt-3 group-hover:bg-foreground/40 transition-colors duration-300" />
                     </div>
 
-                    <div className="lg:col-span-10 space-y-4 relative">
-                      <div className="space-y-2 pr-12">
+                    {/* Content */}
+                    <div className="md:col-span-6 lg:col-span-10 space-y-5 min-w-0">
+                      <div>
                         <h3 className="text-2xl sm:text-3xl font-light tracking-tight hover-glow-text">
                           {job.role}
                         </h3>
-                        <div className="text-muted-foreground font-light">
+                        <p className="text-sm sm:text-base text-muted-foreground font-light mt-1">
                           {job.company}
-                        </div>
+                        </p>
                       </div>
 
-                      <p className="text-muted-foreground leading-relaxed max-w-2xl text-base sm:text-lg font-light">
+                      <p className="text-muted-foreground leading-relaxed text-base sm:text-lg font-light max-w-full md:max-w-3xl">
                         {job.description}
                       </p>
 
-                      {/* Project Images Section */}
+                      {/* Images */}
                       {job.images && (
                         <div className="pt-4">
-                          {/* If project has both mobile and web (like Sakay) */}
+                          {/* Toggle buttons for mobile/web */}
                           {job.images.mobile && job.images.web && (
                             <>
                               <div className="flex gap-3 mb-4">
@@ -453,94 +456,72 @@ export default function Home() {
                                 </button>
                               </div>
 
+                              {/* Image container */}
                               <div className="relative">
-                                {/* Scrollable image container */}
-                                <div className="flex flex-row gap-3 overflow-x-auto py-1 scroll-smooth snap-x snap-mandatory scrollbar-hide">
+                                <div className="flex flex-row gap-4 overflow-x-scroll no-scrollbar scroll-smooth snap-x snap-mandatory py-2">
                                   {(selectedView === "mobile"
                                     ? job.images.mobile
                                     : job.images.web
                                   ).map((imgSrc, imgIdx) => (
                                     <div
                                       key={imgIdx}
-                                      className={`relative flex-shrink-0 overflow-hidden rounded-lg border-[0.15px] border-foreground/10 bg-background/80 backdrop-blur-sm ${
-                                        selectedView === "mobile"
-                                          ? "w-16 sm:w-20 md:w-24 aspect-[9/17.5]"
-                                          : "w-60 sm:w-64 md:w-72 aspect-video"
-                                      } snap-start`}
+                                      className={`
+                                        relative flex-shrink-0 snap-start rounded-lg overflow-hidden
+                                        border border-border/30 bg-transparent
+                                        ${
+                                          selectedView === "web"
+                                            ? "w-[50vw] sm:w-[40vw] md:w-[30vw] lg:w-[28vw] xl:w-[30vw] aspect-[16/9]"
+                                            : "w-[38vw] sm:w-[26vw] md:w-[18vw] lg:w-[14vw] xl:w-[12vw]"
+                                        }
+                                      `}
                                     >
                                       <img
                                         src={imgSrc}
                                         alt={`${job.role} screenshot ${
                                           imgIdx + 1
                                         }`}
-                                        className="w-full h-full object-contain object-center rounded-md cursor-pointer"
+                                        className="w-full h-full object-cover object-center rounded-lg cursor-pointer"
                                         onClick={() => setPreviewImage(imgSrc)}
                                       />
                                     </div>
                                   ))}
                                 </div>
-
-                                {/* Right fade indicator */}
-                                {selectedView === "web" && (
-                                  <div className="pointer-events-none absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-background via-background/90 to-transparent" />
-                                )}
-
-                                {/* Optional: left fade indicator */}
-                                {selectedView === "web" && (
-                                  <div className="pointer-events-none absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-background via-background/90 to-transparent" />
-                                )}
                               </div>
                             </>
                           )}
 
-                          {/* If project has only mobile (HerbaPlant & USE) */}
+                          {/* Mobile-only */}
                           {job.images.mobile && !job.images.web && (
-                            <div className="flex flex-row gap-3 overflow-x-auto py-1">
+                            <div className="flex flex-row gap-4 overflow-x-scroll no-scrollbar scroll-smooth snap-x snap-mandatory py-2">
                               {job.images.mobile.map((imgSrc, imgIdx) => (
                                 <div
                                   key={imgIdx}
-                                  className="relative flex-shrink-0 overflow-hidden rounded-lg border-[0.15px] border-foreground/10 bg-background/80 backdrop-blur-sm w-16 sm:w-20 md:w-24"
-                                  style={{ aspectRatio: "8 / 17" }}
+                                  className="relative flex-shrink-0 snap-start rounded-lg overflow-hidden border border-border/30 bg-transparent w-[38vw] sm:w-[26vw] md:w-[18vw] lg:w-[14vw] xl:w-[12vw]"
                                 >
                                   <img
                                     src={imgSrc}
                                     alt={`${job.role} screenshot ${imgIdx + 1}`}
-                                    className="w-full h-full object-contain object-center rounded-md cursor-pointer"
-                                    onClick={() => {
-                                      setIsClosing(false);
-                                      setPreviewImage(null);
-                                      setTimeout(
-                                        () => setPreviewImage(imgSrc),
-                                        10
-                                      );
-                                    }}
+                                    className="w-full h-auto object-contain object-center rounded-lg cursor-pointer"
+                                    onClick={() => setPreviewImage(imgSrc)}
                                   />
                                 </div>
                               ))}
                             </div>
                           )}
 
-                          {/* If project has only web (Kithara) */}
+                          {/* Web-only */}
                           {job.images.web && !job.images.mobile && (
-                            <div className="flex flex-row gap-3 overflow-x-auto py-1">
+                            <div className="flex flex-row gap-4 overflow-x-scroll no-scrollbar scroll-smooth snap-x snap-mandatory py-2">
                               {job.images.web.map((imgSrc, imgIdx) => (
                                 <div
                                   key={imgIdx}
-                                  className="relative flex-shrink-0 overflow-hidden rounded-lg border-[0.15px] border-foreground/10 bg-background/80 backdrop-blur-sm w-60 sm:w-64 md:w-72"
-                                  style={{ aspectRatio: "17 / 8" }}
+                                  className="relative flex-shrink-0 snap-start rounded-lg overflow-hidden border border-border/30 bg-transparent w-[50vw] sm:w-[40vw] md:w-[30vw] lg:w-[28vw] xl:w-[30vw] aspect-[16/7.5]"
                                 >
                                   <img
                                     src={imgSrc}
                                     alt={`${job.role} screenshot ${imgIdx + 1}`}
-                                    className="w-full h-full object-contain object-center rounded-md cursor-pointer"
-                                    onClick={() => {
-                                      setIsClosing(false);
-                                      setPreviewImage(null);
-                                      setTimeout(
-                                        () => setPreviewImage(imgSrc),
-                                        10
-                                      );
-                                    }}
+                                    className="w-full h-full object-cover object-center rounded-lg cursor-pointer"
+                                    onClick={() => setPreviewImage(imgSrc)}
                                   />
                                 </div>
                               ))}
@@ -549,12 +530,12 @@ export default function Home() {
                         </div>
                       )}
 
+                      {/* Tech Stack */}
                       <div className="flex flex-wrap gap-3 pt-2">
                         {job.tech.map((tech, techIdx) => (
                           <span
                             key={tech}
-                            className="px-3 py-1.5 text-xs font-mono text-muted-foreground border border-border/30 rounded-md bg-background/50 backdrop-blur-sm hover:border-foreground/30 hover:text-foreground transition-all duration-300"
-                            style={{ animationDelay: `${techIdx * 30}ms` }}
+                            className="px-3 py-1.5 text-xs font-mono text-muted-foreground border border-border/30 rounded-md bg-background/50 hover:border-foreground/30 hover:text-foreground transition-all duration-300"
                           >
                             {tech}
                           </span>
@@ -578,14 +559,14 @@ export default function Home() {
         >
           <div className="mb-16 sm:mb-20">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight mb-4 hover-glow-text">
-              Kits
+              Tools & Kits
             </h2>
             <p className="text-muted-foreground text-lg font-light max-w-2xl">
-              Tools and platforms that power my workflow and creative process
+              My go-to tools for design, development, and creative workflow
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6 sm:gap-8">
             {kits.map((kit, idx) => (
               <div
                 key={kit.name}
@@ -617,7 +598,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="text-xs font-mono text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                <div className="text-sm sm:text-base font-mono text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                   {kit.name}
                 </div>
               </div>
@@ -649,25 +630,17 @@ export default function Home() {
 
               <Link
                 href="mailto:taniajaspher@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-6 py-4 rounded-xl border border-border/50 bg-background/40 backdrop-blur-sm hover:border-foreground/50 hover:bg-background/60 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
               >
+                <FaEnvelope
+                  size={20}
+                  className="text-muted-foreground group-hover:text-foreground transition-colors duration-300"
+                />
                 <span className="text-base sm:text-lg font-light">
                   taniajaspher@gmail.com
                 </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 transform group-hover:translate-x-1 group-hover:scale-110 transition-all duration-300"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"
-                  />
-                </svg>
               </Link>
             </div>
 
@@ -680,14 +653,18 @@ export default function Home() {
                   <Link
                     key={social.name}
                     href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group relative p-6 rounded-xl border border-border/50 bg-background/40 backdrop-blur-sm transition-all duration-300 hover:border-border hover:bg-background/60 hover:shadow-xl hover:-translate-y-1"
                     style={{ animationDelay: `${idx * 100}ms` }}
                   >
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-foreground/0 via-foreground/5 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                    <div className="relative z-10 space-y-2">
-                      <div className="text-base font-light text-foreground group-hover:text-foreground transition-colors">
-                        {social.name}
+                    <div className="relative z-10 space-y-2 flex flex-col items-start">
+                      <div className="flex items-center gap-3 text-base font-light text-foreground group-hover:text-foreground transition-colors">
+                        {social.name === "GitHub" && <FaGithub size={20} />}
+                        {social.name === "LinkedIn" && <FaLinkedin size={20} />}
+                        <span>{social.name}</span>
                       </div>
                       <div className="text-sm text-muted-foreground font-light group-hover:text-muted-foreground/80 transition-colors">
                         {social.handle}
@@ -702,10 +679,13 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="py-12 sm:py-16 border-t border-border/50 relative">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-            <div className="text-sm text-muted-foreground font-light">
-              © 2025. All rights reserved.
-            </div>
+          <div className="max-w-4xl mx-auto flex flex-col items-center justify-center text-center px-6 sm:px-8 lg:px-16 space-y-2">
+            <p className="text-sm sm:text-base text-muted-foreground font-light">
+              <span className="text-foreground font-normal">JT</span>.
+            </p>
+            <p className="text-xs text-muted-foreground/70">
+              © {new Date().getFullYear()} All rights reserved.
+            </p>
           </div>
         </footer>
 
