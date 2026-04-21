@@ -225,17 +225,23 @@ function ProjectCarousel({ images, title }: { images: ProjectImages, title: stri
   );
 }
 
+import { FadeIn } from "./FadeIn";
+
 export function Projects() {
   return (
     <>
       <section id="projects" className="h-screen w-screen sm:w-[50vw] lg:w-[40vw] flex-shrink-0 snap-center flex flex-col justify-center px-12 sm:px-24">
-        <div>
-          <h2 className="text-5xl font-bold tracking-tight mb-4">Selected Works</h2>
-          <p className="text-xl text-muted-foreground">A showcase of projects highlighting my focus on intuitive design and responsive interfaces. Keep scrolling to explore.</p>
+        <div className="max-w-xl">
+          <FadeIn direction="up">
+            <h2 className="text-5xl font-bold tracking-tight mb-4">Selected Works</h2>
+          </FadeIn>
+          <FadeIn direction="up" delay={150}>
+            <p className="text-xl text-muted-foreground">A showcase of projects highlighting my focus on intuitive design and responsive interfaces. Keep scrolling to explore.</p>
+          </FadeIn>
         </div>
       </section>
 
-      {PROJECTS.map((project) => (
+      {PROJECTS.map((project, idx) => (
         <section
           key={project.id}
           className={`h-screen flex-shrink-0 snap-center flex flex-col justify-center px-4 sm:px-8 ${project.colSpan === "md:col-span-2"
@@ -243,7 +249,11 @@ export function Projects() {
             : "w-screen sm:w-[500px]"
             }`}
         >
-          <div className="bento-card group flex flex-col h-[85vh] w-full">
+          <FadeIn 
+            direction="up" 
+            delay={idx * 100} 
+            className="bento-card group flex flex-col h-[85vh] w-full"
+          >
 
             <ProjectCarousel images={project.images} title={project.title} />
 
@@ -274,7 +284,7 @@ export function Projects() {
                 ))}
               </div>
             </div>
-          </div>
+          </FadeIn>
         </section>
       ))}
     </>

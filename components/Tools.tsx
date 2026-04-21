@@ -4,6 +4,8 @@ import { Code2, PenTool } from "lucide-react";
 import { SiFigma, SiNotion, SiSpotify, SiOpenai } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 
+import { FadeIn } from "./FadeIn";
+
 export function Tools() {
   const tools = [
     { name: "VS Code", category: "Editor", icon: VscVscode },
@@ -22,13 +24,17 @@ export function Tools() {
     <section id="tools" className="h-screen w-screen flex-shrink-0 snap-center flex flex-col px-6 sm:px-24 pt-24 pb-12 sm:py-0 sm:justify-center scroll-mt-0 overflow-y-auto sm:overflow-visible hide-scrollbar relative">
       <div className="max-w-7xl mx-auto w-full my-auto">
         <div className="mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Tools & Skills</h2>
-          <p className="text-lg sm:text-xl text-muted-foreground">My go-to tools for design, development, and creative workflow.</p>
+          <FadeIn direction="up">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Tools & Skills</h2>
+          </FadeIn>
+          <FadeIn direction="up" delay={150}>
+            <p className="text-lg sm:text-xl text-muted-foreground">My go-to tools for design, development, and creative workflow.</p>
+          </FadeIn>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 
-          <div className="bento-card p-8 md:col-span-2 flex flex-col justify-between">
+          <FadeIn direction="up" delay={300} className="bento-card p-8 md:col-span-2 flex flex-col justify-between">
             <div>
               <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mb-6">
                 <Code2 size={24} className="text-primary" />
@@ -46,9 +52,9 @@ export function Tools() {
                 </span>
               ))}
             </div>
-          </div>
+          </FadeIn>
 
-          <div className="bento-card p-8 flex flex-col justify-between">
+          <FadeIn direction="up" delay={450} className="bento-card p-8 flex flex-col justify-between">
             <div>
               <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <PenTool size={24} className="text-blue-500" />
@@ -58,9 +64,9 @@ export function Tools() {
                 Creating intuitive user experiences with modern design tools.
               </p>
             </div>
-          </div>
+          </FadeIn>
 
-          <div className="bento-card p-8 md:col-span-3">
+          <FadeIn direction="up" delay={600} className="bento-card p-8 md:col-span-3">
             <h3 className="text-xl font-bold mb-6">Everyday Kits</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
               {tools.map((tool) => (
@@ -75,7 +81,7 @@ export function Tools() {
                 </div>
               ))}
             </div>
-          </div>
+          </FadeIn>
 
         </div>
       </div>
